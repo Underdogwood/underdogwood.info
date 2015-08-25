@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PagesController@home');
+Route::get('/home', 'PagesController@home');
+Route::get('/profile', ['middleware' => 'auth', 'uses' => 'ProfileController@show']);
+Route::get('/buy', 'StripeController@buy');
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
+
+]);
